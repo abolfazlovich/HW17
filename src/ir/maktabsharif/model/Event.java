@@ -86,6 +86,6 @@ public class Event {
                 ", reservedCount=" + reservedCount +
                 ", ticketPrice=" + ticketPrice +
                 ", status=" + status +
-                '}';
+                '}'+'\'';
     }
 }
