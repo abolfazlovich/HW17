@@ -39,7 +39,7 @@ public class EventRepositoryImpl implements GenericRepository<Event, Long> {
     }
 
     @Override
-    public void update(Event event) {
+    public void update(Event event,Long aLong) {
 Connection connection = DatabaseConnection.getConnection();
 String query = "update event set title =?,location = ?,capacity = ?, reserved_count = ?,ticket_price = ?,status = ? where id =?; ";
 try{
@@ -50,6 +50,7 @@ try{
     ps.setInt(4,event.getReservedCount());
     ps.setDouble(5,event.getTicketPrice());
     ps.setString(6,event.getStatus().toString());
+    ps.setLong(7,aLong);
     int rowsAffected = ps.executeUpdate();
     if(rowsAffected == 1){
         System.out.println("Event Updated");
@@ -110,6 +111,9 @@ catch (SQLException e) {
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
+            if (!rs.next()){
+                throw new EventNotFoundException("Event Not Found Exception");
+            }
             while (rs.next()) {
                 events.add(findById(rs.getLong(1)));
             }
