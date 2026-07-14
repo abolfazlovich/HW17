@@ -66,7 +66,7 @@ try {
     @Override
     public void delete(Long aLong) {
 Connection connection = DatabaseConnection.getConnection();
-String query = "update reservation set status = CANCELED where id = ?";
+String query = "update reservation set status = 'CANCELED' where id = ?";
 try {
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setLong(1,aLong);
