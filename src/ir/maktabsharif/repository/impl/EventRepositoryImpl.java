@@ -66,12 +66,13 @@ catch (SQLException e) {
     @Override
     public void delete(Long aLong) {
         Connection connection = DatabaseConnection.getConnection();
-        String query = "delete from event where id= ?";
+        String query = "update event set status =CANCELED where id= ?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
+            ps.setLong(1,aLong);
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 1) {
-                System.out.println("Event Deleted");
+                System.out.println("Event Canceled");
             } else
                 throw new EventNotFoundException("Event Not Found Exception");
         } catch (SQLException e) {
