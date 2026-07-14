@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface GenericRepository<T, R> {
     T save(T t);
 
-    void update(T t);
+    void update(T t,R r);
 
     void delete(R r);
 
-    T findById(Long aLong);
+    T findById(R r);
 
     List<T> findAll();
 
