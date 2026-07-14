@@ -27,9 +27,10 @@ public class ReservationService {
         eventRepository.update(event, reservation.getEventId());
     }
 
-    public void showAll() {
+    public List<Reservation> showAll() {
 List<Reservation> reservationList = reservationRepository.findAll();
         System.out.println(reservationList);
+        return reservationList;
     }
 
     public void update(Reservation reservation, Long id) {
