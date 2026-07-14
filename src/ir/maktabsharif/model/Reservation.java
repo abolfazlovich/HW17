@@ -78,6 +78,8 @@ public class Reservation {
         this.status = status;
     }
 
+
+
     @Override
     public String toString() {
         return "Reservation{" +
@@ -88,6 +90,6 @@ public class Reservation {
                 ", ticketCount=" + ticketCount +
                 ", reservationDate=" + reservationDate +
                 ", status=" + status +
-                '}';
+                '}'+'\'';
     }
 }
