@@ -70,17 +70,25 @@ public class Main1 {
                     reservationService.showAll();
                     break;
                 case 8:
+                    System.out.println("*** Reservation List ***");
                     List<Reservation> reservationList = reservationService.showAll();
+                    System.out.println();
+                    System.out.println("*** Event List ***");
                     List<Event> eventList = eventService.showAll();
                     Long activeEvents = eventList.stream().filter(event1 -> event1.getStatus() == EventStatus.ACTIVE).count();
                     Optional<Event> mostExpensiveEvent = eventList.stream().max(Comparator.comparingDouble(Event::getTicketPrice));
                     OptionalDouble averageTicketPrices = eventList.stream().mapToDouble(Event::getTicketPrice).average();
                     List<Reservation> activeReservationList = reservationList.stream().filter(reservation1 -> reservation1.getStatus() == ReservationStatus.ACTIVE).toList();
                     List<Event> fullyBookedEvent = eventList.stream().filter(event1 -> event1.getCapacity() == event1.getReservedCount()).toList();
+                    System.out.println();
                     System.out.println("Number Of Active Events: " +activeEvents);
+                    System.out.println();
                     System.out.println("Most Expensive Event: "+mostExpensiveEvent);
+                    System.out.println();
                     System.out.println("Average Ticket Prices: "+averageTicketPrices);
+                    System.out.println();
                     System.out.println("Active Reservation List: "+activeReservationList);
+                    System.out.println();
                     System.out.println("Fully Booked Events: "+fullyBookedEvent );
                     break;
                 case 9:
@@ -101,7 +109,7 @@ public class Main1 {
         System.out.println("3. Update Event");
         System.out.println("4. Cancel Event");
         System.out.println("5. Create Reservation");
-        System.out.println("5. Cancel Reservation");
+        System.out.println("6. Cancel Reservation");
         System.out.println("7. Show All Reservations");
         System.out.println("8. Reports");
         System.out.println("9. Exit");
