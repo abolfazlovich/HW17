@@ -66,13 +66,13 @@ try {
     @Override
     public void delete(Long aLong) {
 Connection connection = DatabaseConnection.getConnection();
-String query = "delete from reservation where id = ?";
+String query = "update reservation set status = CANCELED where id = ?";
 try {
     PreparedStatement ps = connection.prepareStatement(query);
     ps.setLong(1,aLong);
     int rowsAffected = ps.executeUpdate();
     if(rowsAffected == 1){
-        System.out.println("Reservation Deleted");
+        System.out.println("Reservation Canceled");
     }
     else
         throw  new ReservationNotFoundException("Reservation Not Found Exception");
