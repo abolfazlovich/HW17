@@ -21,9 +21,10 @@ public class EventService {
         eventRepository.save(event);
     }
 
-    public void showAll() {
+    public List<Event> showAll() {
 List<Event> eventList =eventRepository.findAll();
         System.out.println(eventList);
+        return eventList;
     }
 
     public void update(Event event, Long id) {
