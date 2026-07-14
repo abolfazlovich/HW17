@@ -6,7 +6,7 @@ import ir.maktabsharif.service.EventService;
 import ir.maktabsharif.service.ReservationService;
 
 import java.time.LocalDate;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main1 {
     public static void main(String[] args) {
@@ -70,7 +70,18 @@ public class Main1 {
                     reservationService.showAll();
                     break;
                 case 8:
-
+                    List<Reservation> reservationList = reservationService.showAll();
+                    List<Event> eventList = eventService.showAll();
+                    Long activeEvents = eventList.stream().filter(event1 -> event1.getStatus() == EventStatus.ACTIVE).count();
+                    Optional<Event> mostExpensiveEvent = eventList.stream().max(Comparator.comparingDouble(Event::getTicketPrice));
+                    OptionalDouble averageTicketPrices = eventList.stream().mapToDouble(Event::getTicketPrice).average();
+                    List<Reservation> activeReservationList = reservationList.stream().filter(reservation1 -> reservation1.getStatus() == ReservationStatus.ACTIVE).toList();
+                    List<Event> fullyBookedEvent = eventList.stream().filter(event1 -> event1.getCapacity() == event1.getReservedCount()).toList();
+                    System.out.println("Number Of Active Events: " +activeEvents);
+                    System.out.println("Most Expensive Event: "+mostExpensiveEvent);
+                    System.out.println("Average Ticket Prices: "+averageTicketPrices);
+                    System.out.println("Active Reservation List: "+activeReservationList);
+                    System.out.println("Fully Booked Events: "+fullyBookedEvent );
                     break;
                 case 9:
                     System.out.println("*** Have A Nice Day ***");
